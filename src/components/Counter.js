@@ -4,15 +4,15 @@ import { useSelector, useDispatch } from "react-redux";
 // import{connect} from 'react-redux'
 //import { Component } from "react";
 
-import { counterActions } from "../store/index";
+import { counterActions } from "../store/counter";
 import classes from "./Counter.module.css";
 
 const Counter = () => {
   const dispatch = useDispatch();
   //useSelector 훅을 사용하면 react-redux는 이 컴포넌트를 위해
   //리덕스 저장소에 자동으로 구독을 설정한다.
-  const counter = useSelector((state) => state.counter);
-  const show = useSelector((state) => state.showCounter);
+  const counter = useSelector((state) => state.counter.counter);
+  const show = useSelector((state) => state.counter.showCounter);
   const incrementHandler = () => {
     dispatch(counterActions.increment())
 
