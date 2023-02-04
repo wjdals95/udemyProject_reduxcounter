@@ -4,7 +4,7 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
 //createReducer도 있지만 createSlice가 더 강력하다.
 const initialState = { counter: 0, showCounter: true };
-const countSlice = createSlice({
+const counterSlice = createSlice({
   name: "counter",
   initialState: initialState, // : initialState는 모던자바스크립트의 기능으로 삭제해도 된다.
   reducers: {
@@ -17,7 +17,8 @@ const countSlice = createSlice({
       state.counter--;
     },
     increase(state, action) {
-      state.counter = state.counter + action.amount;
+      state.counter = state.counter + action.payload; 
+      //페이로드 매소드의 이름은 리덕스툴킷에서 따로 생성하므로 따로 지정할 수 없다.
     },
     toggleCounter(state) {
       state.showCounter = !state.showCounter;
@@ -60,8 +61,14 @@ const countSlice = createSlice({
 //   return state;
 // };
 
+
+
 const store = configureStore({
-  reducer: countSlice.reducer,
+  counter: counterSlice.reducer,
 });
+
+export const counterActions = counterSlice.actions; 
+//createSlice를 사용하면 action객체를 생성하는 작업과 
+//고유한 식별자를 생각해내는 작업과 오타에 대해 걱정할 필요없다.
 
 export default store;

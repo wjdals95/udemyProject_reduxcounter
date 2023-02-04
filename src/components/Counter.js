@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 // import{connect} from 'react-redux'
 //import { Component } from "react";
 
+import { counterActions } from "../store/index";
 import classes from "./Counter.module.css";
 
 const Counter = () => {
@@ -13,18 +14,26 @@ const Counter = () => {
   const counter = useSelector((state) => state.counter);
   const show = useSelector((state) => state.showCounter);
   const incrementHandler = () => {
-    dispatch({ type: "increment" });
+    dispatch(counterActions.increment())
+
+    //dispatch({ type: "increment" });
     // type은 Redux store reducer에서 사용하는 identifiers 중 하나이어야 한다.
   };
   const increaseHandler = () => {
-    dispatch({ type: "increase", amount: 5 }); // amount 페이로드 추가
+    dispatch(counterActions.increase(5)) // {type: SOME_UNIQUE_INENTIFIER, payload: 5}
+
+    //dispatch({ type: "increase", amount: 5 }); // amount 페이로드 추가
   };
   const decrementHandler = () => {
-    dispatch({ type: "decrement" });
+    dispatch(counterActions.decrement())
+    
+    //dispatch({ type: "decrement" });
   };
 
   const toggleCounterHandler = () => {
-    dispatch({ type: "toggle" });
+    dispatch(counterActions.toggleCounter())
+
+    //dispatch({ type: "toggle" });
   };
 
   return (
